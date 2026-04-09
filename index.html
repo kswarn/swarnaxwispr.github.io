@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swarna × Wispr Flow</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #faf7f2;
+    --sand2: #f3ede3;
+    --ink: #1a1612;
+    --ink2: #3d3528;
+    --muted: #8c7d6a;
+    --dim: #b8a898;
+    --rule: #e8dfd2;
+    --wispr: #d4521a;
+    --wispr-lt: #fef0e8;
+    --wispr-mid: #e8693a;
+    --serif: 'Lora', serif;
+    --sans: 'Outfit', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--sand); color: var(--ink); font-family: var(--sans); font-size: 13px; width: 100%; }
+
+  .topbar { background: var(--wispr); padding: 8px 5%; display: flex; justify-content: space-between; align-items: center; }
+  .topbar-l { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+  .topbar-l strong { color: #fff; }
+  .topbar-r { font-size: 0.62rem; color: rgba(255,255,255,0.6); }
+  .topbar-r a { color: #fff; text-decoration: none; }
+
+  .hero { padding: 44px 5% 36px; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 260px; gap: 40px; align-items: end; }
+  .hero-label { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--wispr); margin-bottom: 10px; }
+  .hero-name { font-family: var(--serif); font-size: 3rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1; color: var(--ink); margin-bottom: 14px; }
+  .hero-name em { font-style: italic; color: var(--wispr); }
+  .hero-desc { font-size: 0.82rem; color: var(--ink2); line-height: 1.7; max-width: 600px; }
+  .hero-desc strong { color: var(--ink); font-weight: 600; }
+  .contact-block { font-size: 0.7rem; line-height: 2.1; color: var(--muted); text-align: right; }
+  .contact-block a { color: var(--wispr); text-decoration: none; }
+
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--rule); padding: 44px 5% 36px; }
+  .metric { padding: 18px 5%; border-right: 1px solid var(--rule); background: var(--sand2); }
+  .metric:last-child { border-right: none; }
+  .metric-n { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--wispr); line-height: 1; margin-bottom: 8px; }
+  .metric-l { font-size: 0.65rem; color: var(--muted); line-height: 1.35; }
+
+  .why-strip { margin: 56px 5% 48px; padding: 12px; display: flex; flex-direction: column; background: var(--wispr-lt); border-bottom: 1px solid #f0d5c4; gap: 14px; align-items: baseline; }
+  .why-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wispr); white-space: nowrap; flex-shrink: 0; }
+  .why-text { font-family: var(--serif); font-size: 0.87rem; font-style: italic; color: var(--ink2); line-height: 1.6; }
+
+  .body { display: block; }
+  .body-main { padding: 28px 5%; }
+  .body-side { display: none; }
+  .bottom-row { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--rule); background: var(--sand2); margin: 56px 5% 48px; padding: 12px; }
+  .bottom-col { padding: 24px 28px; border-right: 1px solid var(--rule); }
+  .bottom-col:first-child { padding-left: 5%; }
+  .bottom-col:last-child { border-right: none; padding-right: 5%; }
+
+  .sh { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .sh::after { content: ''; flex: 1; height: 1px; background: var(--rule); min-width: 10px; }
+
+  .match-table { width: 100%; border-collapse: collapse; }
+  .match-table thead tr { border-bottom: 1.5px solid var(--ink); }
+  .match-table thead th { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0 12px 8px 0; text-align: left; }
+  .match-table thead th:first-child { width: 28%; }
+  .match-table tbody tr { border-bottom: 1px solid var(--rule); }
+  .match-table tbody tr:last-child { border-bottom: none; }
+  .match-table tbody td { padding: 11px 12px 11px 0; vertical-align: top; font-size: 0.77rem; }
+  .jd-col { color: var(--ink2); padding-right: 16px !important; }
+  .jd-tag { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--wispr); background: var(--wispr-lt); padding: 2px 7px; border-radius: 3px; display: inline-block; margin-bottom: 4px; }
+  .how-col { color: #4a3f35; line-height: 1.65; }
+  .how-col strong { color: var(--ink); font-weight: 600; }
+  .proof { display: inline-block; font-size: 0.65rem; color: var(--wispr-mid); text-decoration: none; margin-top: 3px; border-bottom: 1px dashed var(--wispr-mid); padding-bottom: 1px; font-weight: 500; }
+
+  .side-sec { margin-bottom: 22px; }
+  .side-sec:last-child { margin-bottom: 0; }
+  .build-item { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+  .build-item:last-child { border-bottom: none; }
+  .build-meta { display: flex; align-items: baseline; gap: 7px; margin-bottom: 4px; }
+  .build-n { font-family: var(--serif); font-style: italic; font-size: 0.72rem; color: var(--dim); }
+  .build-t { font-weight: 600; font-size: 0.78rem; color: var(--ink); }
+  .build-area { margin-left: auto; font-size: 0.58rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); background: var(--sand); border: 1px solid var(--rule); padding: 1px 6px; border-radius: 2px; }
+  .build-d { font-size: 0.73rem; color: var(--muted); line-height: 1.5; }
+
+  .skill-row { margin-bottom: 20px; }
+  .skill-lbl { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip { font-size: 0.63rem; padding: 2px 8px; border: 1px solid var(--rule); border-radius: 20px; color: var(--ink2); background: var(--sand); }
+  .chip.hi { background: var(--wispr-lt); border-color: #f0c4aa; color: var(--wispr); font-weight: 500; }
+
+  .edu-item { margin-bottom: 20px; }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-deg { font-weight: 600; font-size: 0.76rem; }
+  .edu-school { font-size: 0.68rem; color: var(--wispr); margin-top: 1px; font-weight: 500; }
+  .edu-detail { font-size: 0.63rem; color: var(--dim); margin-top: 1px; }
+
+  .footer { border-top: 1px solid var(--rule); background: var(--sand2); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; }
+  .footer-l { font-size: 0.65rem; color: var(--muted); }
+  .footer-r { font-family: var(--serif); font-style: italic; font-size: 0.8rem; color: var(--wispr); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-l">Swarna Kadagadkai · <strong>Product Design Intern</strong> · Wispr Flow · 2026</div>
+  <div class="topbar-r"><a href="https://swarna.design">swarna.design</a></div>
+</div>
+
+<div class="hero">
+  <div>
+    <div class="hero-label">For the Wispr Flow team</div>
+    <div class="hero-name">Swarna<br><em>Kadagadkai</em></div>
+    <div class="hero-desc">Design engineer with <strong>4+ years</strong> shipping B2B SaaS products end to end. I co-founded a product, managed a design system used by 27 teams, and coded production interfaces alongside engineers. I care about the moments where technology feels human.</div>
+  </div>
+  <div>
+    <div class="contact-block">
+      <div><a href="mailto:swarnakadagadkai@utexas.edu">swarnakadagadkai@utexas.edu</a></div>
+      <div>+1 (737) 419-0516</div>
+      <div>Austin, TX</div>
+      <div><a href="https://swarna.design">swarna.design</a></div>
+      <div>MS HCI · UT Austin · 2027</div>
+    </div>
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="metric-n">4+</div><div class="metric-l">Years design and front-end engineering</div></div>
+  <div class="metric"><div class="metric-n">52%</div><div class="metric-l">Dev time saved via design system pipeline</div></div>
+  <div class="metric"><div class="metric-n">35%</div><div class="metric-l">Product adoption lift at Lloyd's Register</div></div>
+  <div class="metric"><div class="metric-n">56%</div><div class="metric-l">Faster demo creation shipped at RevOwl</div></div>
+</div>
+
+<div class="why-strip">
+  <div class="why-label">Why Wispr</div>
+  <div class="why-text">Voice is the most natural interface humans have. The challenge of making AI transcription feel invisible, personal, and trustworthy across 110+ apps is the kind of interaction design problem I want to work on. Wispr Flow's "zero-edit output" philosophy resonates with how I think about the quality of AI output which should require as less human intervention as possible.</div>
+</div>
+
+<div class="body">
+  <div class="body-main">
+    <div class="sh">What Wispr needs · How I deliver</div>
+    <table class="match-table">
+      <thead><tr><th>Wispr needs</th><th>How I deliver</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">Sleek, delightful UI</span><br>High craft across Mac, Windows, iOS</td>
+          <td class="how-col">At <strong>Lloyd's Register</strong> I redesigned complex maritime workflows, dense operational data made accessible through strong hierarchy and interaction polish. At <strong>Mito Health</strong> I converted text-heavy health content into interactive iOS visuals within Apple HIG. Founders highlighted the visual craft.<br><a class="proof" href="https://www.swarna.design/projects/mito-health" target="_blank">Mito Health case study →</a></td>
+        </tr>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">Ship end-to-end</span><br>Take features from design through production code</td>
+          <td class="how-col">I designed and built crewing and payroll features at Lloyd's Register as the same person, no handoff, no translation loss. At <strong>RevOwl</strong> I owned research, architecture, and shipping for a demo builder used by fintech and healthcare teams. 56% faster demo creation, churn halved from 7% to 3.5%.<br><a class="proof" href="https://canva.link/tbb5ovta0cuki0g" target="_blank">Lloyd's Register case study →</a></td>
+        </tr>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">UI intuition + accessibility</span><br>Instinct for what feels right, accessible across platforms</td>
+          <td class="how-col">My HCI research at UT Austin focuses on trust calibration in AI interfaces, which maps directly to Wispr's challenge of earning user confidence in voice output. I treat focus states, reduced motion, and ARIA semantics as part of the design spec, applied in production React codebases.</td>
+        </tr>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">Collaborate with founders</span><br>Work directly on early features</td>
+          <td class="how-col">I presented the Mito Health redesign directly to founders. At <strong>SaaSPay</strong> I worked alongside founding engineers on every sprint. At RevOwl I was a co-founder, I know how to make fast, defensible decisions under real constraints.</td>
+        </tr>
+        <tr>
+          <td class="jd-col"><span class="jd-tag">Empathy for how people speak</span><br>Design for real speech patterns, not idealised ones</td>
+          <td class="how-col">At <strong>UTickets</strong> I ran 30+ user interviews that revealed 88% abandonment on existing platforms, empathy drove every decision. I've built self-serve usability testing into every project cycle. Voice interfaces fail when they don't match how people actually talk.<br><a class="proof" href="https://swarna.design/utickets" target="_blank">UTickets case study →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="bottom-row">
+  <div class="bottom-col">
+    <div class="sh">What I'd build first</div>
+    <div class="build-item">
+      <div class="build-meta"><span class="build-n">01</span><span class="build-t">Voice Confidence Indicators</span><span class="build-area">AI UX</span></div>
+      <div class="build-d">Subtle inline signals that show when Wispr is certain vs. inferred, building trust in output without adding visual noise to the dictation experience.</div>
+    </div>
+    <div class="build-item">
+      <div class="build-meta"><span class="build-n">02</span><span class="build-t">Per-App Context Onboarding</span><span class="build-area">Onboarding</span></div>
+      <div class="build-d">A lightweight first-use flow that lets Wispr learn vocabulary and tone per app, Slack vs. email vs. Notion, so zero-edit output arrives faster and feels personal.</div>
+    </div>
+    <div class="build-item">
+      <div class="build-meta"><span class="build-n">03</span><span class="build-t">Correction Gesture System</span><span class="build-area">Interaction</span></div>
+      <div class="build-d">A minimal editing pattern for the rare moments Wispr misses, fast enough that correcting feels lighter than retyping, closing the trust loop.</div>
+    </div>
+  </div>
+
+  <div class="bottom-col">
+    <div class="sh">Skills</div>
+    <div class="skill-row">
+      <div class="skill-lbl">Design</div>
+      <div class="chips"><span class="chip hi">Figma</span><span class="chip hi">Prototyping</span><span class="chip hi">Wireframing</span><span class="chip hi">Design Systems</span><span class="chip">User Research</span><span class="chip">Interaction Design</span></div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-lbl">Engineering</div>
+      <div class="chips"><span class="chip hi">React</span><span class="chip hi">TypeScript</span><span class="chip hi">Python</span><span class="chip hi">HTML / CSS</span><span class="chip">Storybook</span><span class="chip">Node.js</span></div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-lbl">AI Tools</div>
+      <div class="chips"><span class="chip hi">Cursor</span><span class="chip hi">Claude</span><span class="chip">v0</span><span class="chip">nano banana</span><span class="chip">open AI</span></div>
+    </div>
+  </div>
+
+  <div class="bottom-col">
+    <div class="sh">Education</div>
+    <div class="edu-item">
+      <div class="edu-deg">MS Information Studies, HCI</div>
+      <div class="edu-school">University of Texas, Austin</div>
+      <div class="edu-detail">Graduating May 2027</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-deg">BE Information Science</div>
+      <div class="edu-school">JSS Academy of Technical Education</div>
+      <div class="edu-detail">Aug 2021 · GPA 3.24 / 4.0</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-l">Available for internship  ·  swarnakadagadkai@utexas.edu  ·  +1 (737) 419-0516  ·  Austin, TX</div>
+  <div class="footer-r"><a href="https://swarna.design">swarna.design</a></div>
